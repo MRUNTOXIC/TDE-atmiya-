@@ -171,7 +171,8 @@
       idx: 0,
       answers: {}, // id -> chosenKey
       instantFeedback: !!instantFeedback,
-      revealed: false,
+      revealedIds: {}, // id -> true (show correct/wrong styling)
+      recordedIds: {}, // id -> true (progress already recorded)
     };
     state.route = "test";
     document.querySelectorAll(".nav-item").forEach((b) => b.classList.toggle("is-active", b.dataset.route === "test"));
@@ -510,7 +511,7 @@
     }
 
     const chosen = s.answers[q.id] || null;
-    const revealed = !!s.revealed;
+    const revealed = s.instantFeedback ? !!s.revealedIds[q.id] : false;
 
     const opts = ["a", "b", "c", "d"]
       .map((k) => {
@@ -874,13 +875,14 @@
         const key = target.dataset.key;
         const q = s.queue[s.idx];
         if (!q || !key) return;
+        if (s.instantFeedback && s.revealedIds[q.id]) return; // lock once answered (prevents double-count)
         s.answers[q.id] = key;
         if (s.instantFeedback) {
-          s.revealed = true;
-          recordTestAnswer(q.id, key);
-          // Auto-advance
-          s.idx += 1;
-          s.revealed = false;
+          s.revealedIds[q.id] = true;
+          if (!s.recordedIds[q.id]) {
+            recordTestAnswer(q.id, key);
+            s.recordedIds[q.id] = true;
+          }
         }
         renderView();
         return;
