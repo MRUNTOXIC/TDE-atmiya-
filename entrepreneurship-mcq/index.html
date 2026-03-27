@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Entrepreneurship MCQ Trainer</title>
+    <meta
+      name="description"
+      content="Learn, memorize, and test chapter-wise Entrepreneurship MCQs with progress tracking and spaced repetition."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./questions.js"></script>
+    <script defer src="./app.js"></script>
+  </head>
+  <body>
+    <div class="bg"></div>
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M12 2.5c-2.7 2.1-4.1 4.7-4.1 7.4 0 1.7.6 3.2 1.7 4.4-2.7.3-4.6 2.2-4.6 4.6 0 1.4.6 2.7 1.6 3.6h11c1-.9 1.6-2.2 1.6-3.6 0-2.4-1.9-4.3-4.6-4.6 1.1-1.2 1.7-2.7 1.7-4.4 0-2.7-1.4-5.3-4.1-7.4Z"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M9.2 17.2h5.6"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title">Entrepreneurship MCQ Trainer</div>
+          <div class="brand-sub">Learn • Memorize • Test (Unit-wise)</div>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="chip" id="themeToggle" type="button" aria-label="Toggle theme">
+          <span class="chip-dot" aria-hidden="true"></span>
+          <span id="themeLabel">Theme</span>
+        </button>
+        <a class="chip" href="./README.md" target="_blank" rel="noreferrer">Help</a>
+      </div>
+    </header>
+
+    <main class="shell">
+      <aside class="sidebar">
+        <nav class="nav" aria-label="Primary">
+          <button class="nav-item is-active" type="button" data-route="dashboard">
+            Dashboard
+          </button>
+          <button class="nav-item" type="button" data-route="learn">Learn</button>
+          <button class="nav-item" type="button" data-route="test">Test</button>
+          <button class="nav-item" type="button" data-route="due">Due</button>
+          <button class="nav-item" type="button" data-route="search">Search</button>
+          <button class="nav-item" type="button" data-route="stats">Stats</button>
+        </nav>
+
+        <section class="panel">
+          <div class="panel-title">Units</div>
+          <div class="unit-list" id="unitList"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-title">Quick Start</div>
+          <div class="quick">
+            <button class="btn" type="button" data-action="start-due">Study due</button>
+            <button class="btn btn-ghost" type="button" data-action="start-random-learn">
+              Learn random
+            </button>
+          </div>
+        </section>
+
+        <section class="panel tiny" id="parseInfo" aria-live="polite"></section>
+      </aside>
+
+      <section class="content">
+        <div id="viewRoot"></div>
+      </section>
+    </main>
+  </body>
+</html>
+
