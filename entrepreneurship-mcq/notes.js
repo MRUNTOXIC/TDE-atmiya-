@@ -139,72 +139,202 @@
     },
   ];
 
-  const IMPORTANT_QUESTIONS = [
+  const TEACHER_12 = [
     {
-      unit: "Unit 1",
-      items: [
-        "Define entrepreneurship. Explain its role in economic development.",
-        "List and explain the key characteristics of an entrepreneur with examples.",
-        "Differentiate entrepreneur vs manager (any 5 points).",
-        "Explain types of entrepreneurship: social, lifestyle, green, franchise, scalable startup.",
-        "What is opportunity recognition? Explain the steps/approach with an example.",
-        "Explain the 7-M resources and their importance in a startup.",
-        "Write short notes on: Startup India, Stand-Up India, SSIP Gujarat, MSME classification.",
-        "Compare business structures: sole proprietorship, partnership, LLP, corporation (liability + ownership).",
+      id: "t1",
+      title: "1. Characteristics and Functions of Entrepreneurship",
+      sections: [
+        {
+          heading: "Characteristics",
+          bullets: [
+            "Innovation – creating new ideas or improving products",
+            "Risk-taking – willingness to take calculated risks",
+            "Vision – ability to plan long-term goals",
+            "Leadership – guiding and motivating people",
+            "Persistence – determination to overcome challenges",
+            "Adaptability – ability to adjust to market changes",
+          ],
+        },
+        {
+          heading: "Functions",
+          bullets: [
+            "Identifying business opportunities",
+            "Organizing resources like capital and labor",
+            "Taking business risks",
+            "Innovation and product development",
+            "Creating employment opportunities",
+            "Contributing to economic growth",
+          ],
+        },
       ],
     },
     {
-      unit: "Unit 2",
-      items: [
-        "What is idea generation and idea screening? Explain the process.",
-        "Explain Business Model Canvas (9 blocks) with a simple example.",
-        "Define market research. Differentiate primary vs secondary research.",
-        "Explain the market research process (steps) and importance of sampling.",
-        "Explain Marketing Mix (4Ps) with an example product.",
-        "What is market segmentation and target market? Give examples.",
-        "Define SWOT analysis and show how it helps in startup planning.",
-        "Explain prototype and prototype testing; how it reduces risk.",
+      id: "t2",
+      title: "2. 7-M Resources",
+      intro: "Entrepreneurs require important resources known as 7-M resources to run and grow a business.",
+      bullets: [
+        "Money – capital required to start and operate a business",
+        "Manpower – skilled employees and workforce",
+        "Materials – raw materials needed for production",
+        "Machinery – equipment and tools used in production",
+        "Methods – processes and techniques used in operations",
+        "Markets – customers and demand for products",
+        "Mentorship – guidance from experienced experts",
+      ],
+      footer: "Proper management of these resources ensures efficient business operations.",
+    },
+    {
+      id: "t3",
+      title: "3. Market Research Process",
+      intro: "Market research is the process of collecting and analyzing information about customers and the market.",
+      bullets: [
+        "Define the problem – identify the purpose of research",
+        "Prepare questionnaire – design questions for customers",
+        "Sampling – select a group of people for research",
+        "Data collection – gather information through surveys or interviews",
+        "Data analysis – examine the collected information",
+        "Interpretation and conclusion – derive meaningful insights for decision-making",
       ],
     },
     {
-      unit: "Unit 3",
-      items: [
-        "Define management. Explain functions: planning, organizing, staffing, directing, controlling.",
-        "Differentiate management vs administration.",
-        "Explain types of organizational structures: line, functional, line & staff, matrix.",
-        "Explain leadership styles: autocratic, democratic, laissez-faire; and transactional vs transformational.",
-        "Explain communication flow: upward, downward, horizontal (with examples).",
-        "Write short notes on recruitment, selection, training, motivation.",
-        "Explain budgeting and basic financial terms: equity shares and debentures.",
+      id: "t4",
+      title: "4. Marketing Mix (4Ps)",
+      intro: "Marketing Mix refers to the strategies used by businesses to promote and sell products effectively.",
+      bullets: [
+        "Product – the goods or services offered to customers",
+        "Price – the amount customers pay for the product",
+        "Place – distribution channels used to deliver the product",
+        "Promotion – advertising and marketing activities used to attract customers",
+      ],
+      footer: "The marketing mix helps businesses reach the right customers and increase sales.",
+    },
+    {
+      id: "t5",
+      title: "5. Types of Business Ownership",
+      intro: "Business ownership refers to the legal structure under which a business operates.",
+      bullets: [
+        "Sole Proprietorship – owned and managed by one person",
+        "Partnership – business owned by two or more partners",
+        "Corporation / Company – owned by shareholders and managed by directors",
+        "Limited Liability Company (LLC) – combines features of partnership and corporation",
+        "Cooperative – owned and operated by members for mutual benefit",
+      ],
+      footer: "Each structure has different legal responsibilities and liabilities.",
+    },
+    {
+      id: "t6",
+      title: "6. Functions of Management",
+      intro: "Management involves planning and controlling business activities to achieve organizational goals.",
+      bullets: [
+        "Planning – setting objectives and deciding strategies",
+        "Organizing – arranging resources and tasks",
+        "Staffing – recruiting and managing employees",
+        "Directing – guiding and motivating employees",
+        "Controlling – monitoring performance and making improvements",
+      ],
+      footer: "These functions help businesses operate efficiently.",
+    },
+    {
+      id: "t7",
+      title: "7. Startup Incubation and Types of Incubators",
+      intro:
+        "Startup incubation is the process of supporting new businesses by providing resources, mentorship, and infrastructure.",
+      bullets: [
+        "University Incubators – run by educational institutions to support student startups",
+        "Corporate Incubators – created by companies to develop innovative ideas",
+        "Government Incubators – supported by government programs",
+        "Private Incubators – operated by private organizations or investors",
+      ],
+      footer: "Incubators provide funding guidance, workspace, mentorship, and networking opportunities.",
+    },
+    {
+      id: "t8",
+      title: "8. Investor Pitch",
+      intro: "An investor pitch is a presentation made by entrepreneurs to attract investors and secure funding.",
+      bullets: [
+        "Business idea or problem being solved",
+        "Product or service offered",
+        "Target market and customers",
+        "Business model and revenue plan",
+        "Competitive advantage",
+        "Financial projections and funding needs",
+      ],
+      footer: "A strong investor pitch increases the chances of obtaining investment.",
+    },
+    {
+      id: "t9",
+      title: "9. Intellectual Property Rights (IPR) and Its Importance",
+      intro:
+        "Intellectual Property Rights (IPR) are legal rights given to creators for their inventions, designs, and creative works.",
+      bullets: [
+        "Protects innovation and creativity",
+        "Encourages research and development",
+        "Provides legal ownership of ideas",
+        "Helps businesses gain competitive advantage",
+        "Enables creators to earn revenue from their inventions",
       ],
     },
     {
-      unit: "Unit 4",
-      items: [
-        "What is incubation? Explain how incubators support startups (space, mentoring, networking).",
-        "Differentiate incubators vs accelerators (purpose, duration, selection, funding).",
-        "Explain types of incubators: academic, corporate, virtual, social (and examples).",
-        "Write short notes on support agencies/schemes: DIC, GIDC, GSFC, CLCSS, SIDO, NEDB.",
-        "Define IPR. Differentiate patent, trademark, copyright, design patent, plant patent.",
-        "Explain trademark validity and patent duration; why they matter for startups.",
-        "Explain contracts and why agreements with minors are invalid.",
-        "What is ESG reporting? Why is it important today?",
+      id: "t10",
+      title: "10. SIDO / NEDB",
+      sections: [
+        {
+          heading: "SIDO (Small Industries Development Organization)",
+          intro: "SIDO supports the development of small-scale industries.",
+          bullets: [
+            "Provides technical support",
+            "Promotes entrepreneurship",
+            "Assists small businesses with training and development",
+            "Helps improve industrial growth",
+          ],
+        },
+        {
+          heading: "NEDB (National Entrepreneurship Development Board)",
+          intro: "NEDB promotes entrepreneurship development in the country.",
+          bullets: [
+            "Encourages entrepreneurial education",
+            "Supports startup initiatives",
+            "Provides training programs for entrepreneurs",
+          ],
+        },
       ],
     },
     {
-      unit: "Unit 5",
-      items: [
-        "What is a project proposal/report? Explain its main sections.",
-        "Explain feasibility study types: technical, economic, legal, operational.",
-        "Explain break-even point (BEP) and contribution with formula and example.",
-        "Define ROI and ROS; explain how they measure performance.",
-        "Explain CSR and business ethics; why bribery is unethical.",
-        "Write short notes on EXIM policy and export incentives.",
-        "Explain exit strategies: succession planning, harvesting strategy, bankruptcy protection.",
+      id: "t11",
+      title: "11. Break-Even Point (BEP)",
+      body: [
+        "The Break-Even Point (BEP) is the level of sales at which total revenue equals total costs.",
+        "At this point, the business neither makes profit nor incurs loss.",
+      ],
+      formula: "Break-Even Point = Fixed Costs ÷ (Selling Price per Unit − Variable Cost per Unit)",
+      footer: "Knowing the break-even point helps businesses plan production and pricing strategies.",
+    },
+    {
+      id: "t12",
+      title: "12. Bankruptcy and Avoidance",
+      sections: [
+        {
+          heading: "Bankruptcy",
+          body: [
+            "Bankruptcy is a legal condition where a business or individual is unable to repay debts to creditors.",
+            "It occurs when liabilities exceed assets and the business cannot meet financial obligations.",
+          ],
+        },
+        {
+          heading: "Bankruptcy Avoidance",
+          intro: "Businesses can avoid bankruptcy by:",
+          bullets: [
+            "Proper financial planning",
+            "Controlling costs",
+            "Increasing revenue",
+            "Managing debts effectively",
+            "Seeking financial restructuring or support",
+          ],
+          footer: "These strategies help businesses maintain financial stability.",
+        },
       ],
     },
   ];
 
-  window.MCQ_NOTES = { notes: NOTES, importantQuestions: IMPORTANT_QUESTIONS };
+  window.MCQ_NOTES = { notes: NOTES, teacher12: TEACHER_12 };
 })();
-

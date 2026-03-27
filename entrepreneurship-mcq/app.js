@@ -727,24 +727,45 @@
       })
       .join("");
 
-    const impHtml = data.importantQuestions
-      .map((u) => {
-        return `
-          <details>
-            <summary>${escapeHtml(u.unit)} – Important Questions</summary>
-            <ul class="note-list">
-              ${u.items.map((q) => `<li>${escapeHtml(q)}</li>`).join("")}
-            </ul>
-          </details>
-        `;
-      })
-      .join("");
+    const teacher = (data.teacher12 || []).map((t) => {
+      const intro = t.intro ? `<div class="note-body">${escapeHtml(t.intro)}</div>` : "";
+      const body = (t.body || []).map((p) => `<div class="note-body">${escapeHtml(p)}</div>`).join("");
+      const bullets = (t.bullets || []).length
+        ? `<ul class="note-list">${t.bullets.map((b) => `<li>${escapeHtml(b)}</li>`).join("")}</ul>`
+        : "";
+      const footer = t.footer ? `<div class="note-footer">${escapeHtml(t.footer)}</div>` : "";
+      const formula = t.formula ? `<div class="item" style="margin-top:10px;font-family:var(--mono);">${escapeHtml(t.formula)}</div>` : "";
+      const sections = (t.sections || []).length
+        ? t.sections
+            .map((s) => {
+              const sIntro = s.intro ? `<div class="note-body">${escapeHtml(s.intro)}</div>` : "";
+              const sBody = (s.body || []).map((p) => `<div class="note-body">${escapeHtml(p)}</div>`).join("");
+              const sBullets = (s.bullets || []).length
+                ? `<ul class="note-list">${s.bullets.map((b) => `<li>${escapeHtml(b)}</li>`).join("")}</ul>`
+                : "";
+              const sFooter = s.footer ? `<div class="note-footer">${escapeHtml(s.footer)}</div>` : "";
+              return `<div class="hr"></div><div class="q" style="font-size:14px;">${escapeHtml(s.heading || "")}</div>${sIntro}${sBody}${sBullets}${sFooter}`;
+            })
+            .join("")
+        : "";
+      return `
+        <details>
+          <summary>${escapeHtml(t.title)}</summary>
+          ${intro}
+          ${body}
+          ${bullets}
+          ${formula}
+          ${sections}
+          ${footer}
+        </details>
+      `;
+    }).join("");
 
     viewRoot().innerHTML = `
       <div class="grid">
         <div class="card">
           <h1 class="h1">Notes</h1>
-          <div class="muted">Quick theory revision + unit-wise important questions.</div>
+          <div class="muted">Quick theory revision.</div>
           <div class="hr"></div>
           <div class="grid">
             ${notesHtml}
@@ -752,11 +773,11 @@
         </div>
 
         <div class="card">
-          <h1 class="h1">Important Questions</h1>
-          <div class="muted">AI-curated revision questions based on your Unit 1–5 syllabus + MCQs.</div>
+          <h1 class="h1">Teacher’s 12 Important (5 Marks)</h1>
+          <div class="muted">Exam-ready short answers to upload and share.</div>
           <div class="hr"></div>
           <div class="grid">
-            ${impHtml}
+            ${teacher}
           </div>
         </div>
       </div>
