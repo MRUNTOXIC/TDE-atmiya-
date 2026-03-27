@@ -697,10 +697,77 @@
     `;
   }
 
+  function renderNotes() {
+    const data = window.MCQ_NOTES;
+    if (!data) {
+      viewRoot().innerHTML = `
+        <div class="card">
+          <h1 class="h1">Notes</h1>
+          <div class="muted">Notes data not loaded.</div>
+        </div>
+      `;
+      return;
+    }
+
+    const notesHtml = data.notes
+      .map((n) => {
+        const body = (n.body || []).map((p) => `<div class="note-body">${escapeHtml(p)}</div>`).join("");
+        const bullets = (n.bullets || []).length
+          ? `<ul class="note-list">${n.bullets.map((b) => `<li>${escapeHtml(b)}</li>`).join("")}</ul>`
+          : "";
+        const footer = n.footer ? `<div class="note-footer">${escapeHtml(n.footer)}</div>` : "";
+        return `
+          <details>
+            <summary>${escapeHtml(n.title)}</summary>
+            ${body}
+            ${bullets}
+            ${footer}
+          </details>
+        `;
+      })
+      .join("");
+
+    const impHtml = data.importantQuestions
+      .map((u) => {
+        return `
+          <details>
+            <summary>${escapeHtml(u.unit)} – Important Questions</summary>
+            <ul class="note-list">
+              ${u.items.map((q) => `<li>${escapeHtml(q)}</li>`).join("")}
+            </ul>
+          </details>
+        `;
+      })
+      .join("");
+
+    viewRoot().innerHTML = `
+      <div class="grid">
+        <div class="card">
+          <h1 class="h1">Notes</h1>
+          <div class="muted">Quick theory revision + unit-wise important questions.</div>
+          <div class="hr"></div>
+          <div class="grid">
+            ${notesHtml}
+          </div>
+        </div>
+
+        <div class="card">
+          <h1 class="h1">Important Questions</h1>
+          <div class="muted">AI-curated revision questions based on your Unit 1–5 syllabus + MCQs.</div>
+          <div class="hr"></div>
+          <div class="grid">
+            ${impHtml}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
   function renderView() {
     if (state.route === "dashboard") return renderDashboard();
     if (state.route === "learn") return renderLearn();
     if (state.route === "test") return renderTest();
+    if (state.route === "notes") return renderNotes();
     if (state.route === "due") return renderDue();
     if (state.route === "search") return renderSearch();
     if (state.route === "stats") return renderStats();

@@ -561,6 +561,38 @@ body {
   display: none !important;
 }
 
+details {
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 12px;
+}
+
+summary {
+  cursor: pointer;
+  font-weight: 850;
+}
+
+.note-body {
+  margin-top: 10px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.note-list {
+  margin: 10px 0 0 18px;
+  color: var(--muted);
+}
+
+.note-list li {
+  margin: 6px 0;
+}
+
+.note-footer {
+  margin-top: 10px;
+  color: var(--muted);
+}
+
 @media (max-width: 980px) {
   .shell {
     grid-template-columns: 1fr;
