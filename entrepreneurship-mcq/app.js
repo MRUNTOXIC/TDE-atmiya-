@@ -173,6 +173,7 @@
       instantFeedback: !!instantFeedback,
       revealedIds: {}, // id -> true (show correct/wrong styling)
       recordedIds: {}, // id -> true (progress already recorded)
+      finished: false, // guard against double-recording
     };
     state.route = "test";
     document.querySelectorAll(".nav-item").forEach((b) => b.classList.toggle("is-active", b.dataset.route === "test"));
@@ -511,7 +512,8 @@
     }
 
     const chosen = s.answers[q.id] || null;
-    const revealed = s.instantFeedback ? !!s.revealedIds[q.id] : false;
+    const revealed = !!s.revealedIds[q.id];
+    const unanswered = chosen ? "" : `<span class="pill warn">Unanswered</span>`;
 
     const opts = ["a", "b", "c", "d"]
       .map((k) => {
@@ -535,6 +537,7 @@
           <div class="row">
             <span class="pill">${escapeHtml(q.unitLabel)}</span>
             <span class="pill">Q ${idx}/${total}</span>
+            ${unanswered}
           </div>
           <span class="pill">${Object.keys(s.answers).length} answered</span>
         </div>
@@ -547,6 +550,9 @@
             <button class="btn btn-small btn-ghost" type="button" data-action="test-next">Next</button>
           </div>
           <div class="row">
+            <button class="btn btn-small btn-ghost" type="button" data-action="test-reveal">
+              ${revealed ? "Hide" : "Check answer"}
+            </button>
             <button class="btn btn-small" type="button" data-action="finish-test">Finish</button>
           </div>
         </div>
@@ -877,13 +883,22 @@
         if (!q || !key) return;
         if (s.instantFeedback && s.revealedIds[q.id]) return; // lock once answered (prevents double-count)
         s.answers[q.id] = key;
-        if (s.instantFeedback) {
-          s.revealedIds[q.id] = true;
-          if (!s.recordedIds[q.id]) {
-            recordTestAnswer(q.id, key);
-            s.recordedIds[q.id] = true;
-          }
+        if (s.instantFeedback) s.revealedIds[q.id] = true;
+        if (s.instantFeedback && !s.recordedIds[q.id]) {
+          recordTestAnswer(q.id, key);
+          s.recordedIds[q.id] = true;
         }
+        renderView();
+        return;
+      }
+
+      if (action === "test-reveal") {
+        const s = state.session;
+        if (!s || s.mode !== "test") return;
+        const q = s.queue[s.idx];
+        if (!q) return;
+        // In non-instant mode this only reveals; it does NOT record progress.
+        s.revealedIds[q.id] = !s.revealedIds[q.id];
         renderView();
         return;
       }
@@ -900,12 +915,16 @@
       if (action === "finish-test") {
         const s = state.session;
         if (!s || s.mode !== "test") return;
-        // Ensure progress recorded for non-instant mode too
+        if (s.finished) return;
+        // Ensure progress recorded for non-instant mode too (record once).
         if (!s.instantFeedback) {
           for (const q of s.queue) {
+            if (s.recordedIds[q.id]) continue;
             recordTestAnswer(q.id, s.answers[q.id] || null);
+            s.recordedIds[q.id] = true;
           }
         }
+        s.finished = true;
         s.idx = s.queue.length; // triggers result view
         renderView();
         return;
